@@ -11,9 +11,6 @@ class DefaultChecker(CheckerBase):
     def check(self) -> tuple[bool, str]:
         return super().check()
     
-    def cpp_check(self) -> tuple[bool, str]:
-        return super().cpp_check()
-    
     def input(self):
         return super().input
     

@@ -30,9 +30,8 @@ class CheckerBase(ABC):
     def output(self, data: bytes):
         self._output = data
 
-    @abstractmethod
-    def cpp_check(self) -> tuple[bool, str]:
-        base_data_path = Path().resolve() / 'data'
+    def cpp_good_output(self) -> bytes:
+        base_data_path = Path().resolve() / 'scripts'
         if not (base_data_path / 'good').is_file():
             p_compile = run(f'g++ {base_data_path / "good.cpp"} -o {base_data_path / "good"}'.split(), capture_output=True)
             if p_compile.returncode:
@@ -40,11 +39,12 @@ class CheckerBase(ABC):
         p_good = run(base_data_path / 'good', input=self.input, capture_output=True)
         if p_good.returncode:
             raise Exception('Execution of good file failed.')
-        if p_good.stdout.rstrip() == self.output:
-            return (True, 'OK')
-        else:
-            return (False, 'WRONG_ANSWER')
+        return p_good.stdout.rstrip()
 
     @abstractmethod
     def check(self) -> tuple[bool, str]:
-        return self.cpp_check()
+        good_output = self.cpp_good_output()
+        if good_output == self.output:
+            return (True, 'OK')
+        else:
+            return (False, f'Good output is {good_output.decode()}')

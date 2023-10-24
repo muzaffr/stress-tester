@@ -50,7 +50,7 @@ class StressTester:
             p_checker = run(str(self._checker_file), input=checker_input, capture_output=True)
             if p_checker.returncode:
                 message += f'checker file exited with return code {p_bad.returncode}'
-                message += p_checker.stderr.decode().rstrip()
+            message += p_checker.stderr.decode().rstrip()
             verdict = p_checker.stdout.decode().rstrip()
         except TimeoutExpired:
             verdict = 'TIME_LIMIT_EXCEEDED'
