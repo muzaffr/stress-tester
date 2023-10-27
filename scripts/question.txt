@@ -1,0 +1,28 @@
+You have to effectively manage the servers of a platform. You are given 2n servers, where the number of people using the ith server is represented by the array d. you can bring 2n servers together, such that each server belongs to only one pair, and in each pair, exactly one server is set to idle.
+For each pair of servers, you can choose to set any server to idle, which means that a particular server will not work or is being stopped. Choosing a server to be idle or not comes with a cost which is calculated as follows:
+If we choose the server which has the smaller data to be idle, the cost incurred is equal to 1.
+If we choose the server which has the larger data to be idle, the cost incurred is equal to 0.
+If both the servers have the same amount of data, the cost incurred is 0.
+Now, the total working capacity of the servers is defined as the sum of data of the servers which are currently working or the servers which are not idle.
+Given an integer n, an array and an integer k, find the minimum total cost of bringing 2n servers together such that the total working capacity of the servers is greater than or equal to k. If it is impossible to achieve a total working capacity of servers greater than or equal to k, print -1.
+
+Input
+The first line of input contains 2 space separated integers, n (1 ≤ n ≤ 10⁵) and k (1 ≤ k ≤ 10⁹).
+The next line of input contains 2n space separated integers dᵢ (1 ≤ dᵢ ≤ 10⁹).
+
+Output
+Output a single integer: the minimum total cost required to make the total working capacity ≥ k, or print -1 if it is not possible
+
+Sample 1
+
+Input
+2 6
+3 1 5 2
+
+Output
+1
+
+Explanation
+Pair the servers with data (1, 2) and set the larger data server to be idle. This costs 0.
+Pair the servers with data (3, 5) and set the smaller data server to be idle. This costs 1.
+Total working capacity is 6 with total cost 1.
