@@ -42,7 +42,7 @@ class CheckerBase(ABC):
         return p_good.stdout.rstrip()
 
     @abstractmethod
-    def check(self) -> tuple[bool, str]:
+    def check(self):
         good_output = self.cpp_good_output()
         if good_output == self.output:
             return (True, 'OK')

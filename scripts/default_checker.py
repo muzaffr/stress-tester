@@ -1,14 +1,15 @@
-#!/usr/bin/python3.11
+#!/usr/bin/python3
 
+from os.path import abspath, join, realpath
 from sys import stdin, stderr, path
 
-path.append('/home/v1ctor/ws/dev/stress')
+path.append(abspath(join(realpath(__file__), '../..')))
 
 from src.checker_base import CheckerBase
 
 class DefaultChecker(CheckerBase):
     
-    def check(self) -> tuple[bool, str]:
+    def check(self):
         return super().check()
     
     def input(self):
