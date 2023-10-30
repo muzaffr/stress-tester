@@ -2,4 +2,7 @@
 
 from random import randint as ri
 
-print(ri(1, 100))
+N = 8
+print(1)
+print(N)
+print(''.join([chr(48 + ri(0, 1)) for _ in range(N)]))

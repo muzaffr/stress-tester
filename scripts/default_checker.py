@@ -10,7 +10,27 @@ from src.checker_base import CheckerBase
 class DefaultChecker(CheckerBase):
     
     def check(self):
-        return super().check()
+        # This checker assumes that input is well-formatted.
+        # If you don't trust your formatting, add checks yourself.
+        inp = self.input.decode().split('\n')
+        n = int(inp[1])
+        s = inp[2]
+        out = self.output.decode().split('\n')
+        k = int(out[0])
+        if s.count('0') != s.count('1'):
+            if k != -1:
+                return ('False', 'Bruh')
+            else:
+                return ('True', 'OK')
+        if k == 0:
+            out.extend(['1'])
+        for x in map(int, out[1].split(' ')):
+            s = s[:x - 1] + '01' + s[x - 1:]
+        for i in range(len(s) // 2):
+            if s[i] == s[- i - 1]:
+                return ('False', 'String is not good')
+        return ('True', 'OK')
+        # return super().check()
     
     def input(self):
         return super().input
