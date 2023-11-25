@@ -21,7 +21,7 @@ class DefaultChecker(CheckerBase):
 
 def main():
     dc = DefaultChecker()
-    payload = stdin.read().rstrip().encode()
+    payload = stdin.read().rstrip(' \n\t').encode()
     dc.input, dc.output = payload.split(bytes([0x1C]))
     status, message = dc.check()
     if status:

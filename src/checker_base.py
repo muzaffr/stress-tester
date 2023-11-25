@@ -47,4 +47,4 @@ class CheckerBase(ABC):
         if good_output == self.output:
             return (True, 'OK')
         else:
-            return (False, f'Good output is {good_output.decode()}')
+            return (False, f'Good output is:\n{good_output.decode()}')
